@@ -34,7 +34,7 @@ void main(List<String> args) {
 
         stdout.write('Ingresar fecha de entrega (AÑO-MES-DIA): ');
         String fechaIngresada = stdin.readLineSync()!;
-        DateTime fechaAAsignar = DateTime.now(); // Valor por defecto.
+        DateTime fechaAAsignar;
 
         try {
           fechaAAsignar = DateTime.parse(fechaIngresada);
