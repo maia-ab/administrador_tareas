@@ -1,22 +1,32 @@
 import 'package:intl/intl.dart';
 
 class Tarea {
-  String nombre;
+  String? nombre;
   DateTime fechaEntrega;
-  DateTime fechaCreacion;
-  DateTime? fechaFinalizacion;
+  late DateTime fechaCreacion;
+  late DateTime fechaFinalizacion;
   String? descripcion;
   bool _estaCompleta = false;
 
-  Tarea(this.nombre, this.fechaEntrega, this.fechaCreacion, this.descripcion);
+  Tarea(
+      {required this.nombre,
+      required this.fechaEntrega,
+      required fechaCreacion,
+      this.descripcion});
 
   bool get estadoActual => _estaCompleta;
 
   void cambiarEstado() => _estaCompleta = !_estaCompleta;
 
   @override
-  String toString() =>
-      "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(fechaCreacion)}  - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcion";
+  String toString() {
+    String descripcionTexto = descripcion ?? "Sin descripción";
+
+    return "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(DateTime.now())} - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcionTexto";
+  }
+
+  //String toString() =>
+  //"$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(fechaCreacion!)}  - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcion";
   // El DateFormat viene con el paquete de intl te permite formatear el DateTime como quieras en este caso lo use para que no muestre la hora.
 }
 

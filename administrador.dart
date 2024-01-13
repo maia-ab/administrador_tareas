@@ -17,9 +17,12 @@ void main(List<String> args) {
     switch (opcion) {
       case 1:
         stdout.write('Ingresar el nombre de la tarea: ');
-        String nombre = stdin.readLineSync()!;
+        String? nombre = stdin.readLineSync();
 
-        if (tareas.getTareasPorNombre().contains(nombre)) {
+        if (nombre == "") {
+          print("No puede crearse una tarea sin nombre.");
+          break;
+        } else if (tareas.getTareasPorNombre().contains(nombre)) {
           print("Ya existe una tarea con ese nombre.");
           break;
         }
@@ -38,8 +41,11 @@ void main(List<String> args) {
         stdout.write('Ingresar descripcion de la tarea (OPCIONAL):');
         String descripcion = stdin.readLineSync()!;
 
-        Tarea tareaCreada =
-            new Tarea(nombre, fechaAAsignar, DateTime.now(), descripcion);
+        Tarea tareaCreada = new Tarea(
+            nombre: nombre,
+            fechaEntrega: fechaAAsignar,
+            fechaCreacion: DateTime.now(),
+            descripcion: descripcion);
         tareas.addTarea(tareaCreada);
         break;
 
