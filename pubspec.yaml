@@ -1,0 +1,6 @@
+name: administrador_de_tareas
+description: Un administrador de tareas que permite agregar tareas, visualizarlas, completarlas y ver las tareas comppletas.
+environment:
+  sdk: '^3.2.0'
+dependencies:
+  intl: ^0.19.0
