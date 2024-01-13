@@ -21,11 +21,8 @@ class Tarea {
   @override
   String toString() {
     return "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(DateTime.now())} - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcion";
+    // El DateFormat viene con el paquete de intl te permite formatear el DateTime como quieras en este caso lo use para que no muestre la hora.
   }
-
-  //String toString() =>
-  //"$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(fechaCreacion!)}  - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcion";
-  // El DateFormat viene con el paquete de intl te permite formatear el DateTime como quieras en este caso lo use para que no muestre la hora.
 }
 
 class ListadoDeTareas {
