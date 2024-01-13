@@ -9,13 +9,14 @@ void main(List<String> args) {
     print('2. Ver tareas');
     print('3. Completar tareas');
     print('4. Ver tareas completas');
-    print('5. Eliminar tarea');
-    print('6. Limpiar tareas');
-    print('7. Tareas a realizar en fecha:');
-    print('8. Agregar contacto');
-    print('9. Asignar tarea a un contacto');
-    print('10. Ver contactos');
-    print('13. Salir');
+    print('5. Ver tareas pendientes');
+    print('6. Eliminar tarea');
+    print('7. Limpiar tareas');
+    print('8. Tareas a realizar en fecha:');
+    print('9. Agregar contacto');
+    print('10. Asignar tarea a un contacto');
+    print('11. Ver contactos');
+    print('12. Salir');
     stdout.write('Seleccione accion a realizar: ');
     int opcion = int.parse(stdin.readLineSync()!);
     switch (opcion) {
@@ -92,6 +93,14 @@ void main(List<String> args) {
         break;
 
       case 5:
+        if (tareas.hayPendientes()) {
+          tareas.verTareasPendientes();
+        } else {
+          print("No hay tareas pendientes.");
+        }
+        break;
+
+      case 6:
         stdout.write('Ingresar el nombre de la tarea que quiera completar: ');
         String nombreDeTarea = stdin.readLineSync()!;
         if (tareas.getTareasPorNombre().contains(nombreDeTarea)) {
@@ -102,7 +111,7 @@ void main(List<String> args) {
         }
         break;
 
-      case 6:
+      case 7:
         if (!tareas.estaVacio()) {
           tareas.vaciarListado();
           print("Tareas eliminadas!");
@@ -111,14 +120,14 @@ void main(List<String> args) {
         }
         break;
 
-      case 7:
+      case 8:
         stdout.write('Ingrese fecha: ');
         String fechaIngresada = stdin.readLineSync()!;
         DateTime fechaAFiltrar = DateTime.parse(fechaIngresada);
         tareas.verTareasPorFechaDeEntrega(fechaAFiltrar);
         break;
 
-      case 8:
+      case 9:
         stdout.write('Ingrese nombre de nuevo contacto: ');
         String nombreContacto = stdin.readLineSync()!;
 
@@ -131,7 +140,7 @@ void main(List<String> args) {
 
         break;
 
-      case 9:
+      case 10:
         stdout.write('Ingrese nombre de contacto: ');
         String nombreContacto = stdin.readLineSync()!;
         Persona contacto = contactos.getIntegrantePorNombre(nombreContacto);
@@ -150,7 +159,7 @@ void main(List<String> args) {
 
         break;
 
-      case 10:
+      case 11:
         if (!contactos.estaVacio()) {
           contactos.verIntegrantes();
         } else {
@@ -160,7 +169,7 @@ void main(List<String> args) {
 
         break;
 
-      case 11:
+      case 12:
         print('Adios!');
         continuar = false;
         break;

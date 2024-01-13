@@ -44,9 +44,9 @@ class ListadoDeTareas {
     return tareas.where((tarea) => tarea.estadoActual).toList();
   }
 
-  //List<String?> getTareasPendientes() {
-  //  return List<String?>;
-  //}
+  List<Tarea> getTareasPendientes() {
+    return tareas.where((tarea) => !tarea.estadoActual).toList();
+  }
 
   void addTarea(Tarea tarea) {
     tareas.add(tarea);
@@ -70,8 +70,16 @@ class ListadoDeTareas {
     return this.getTareasCompletas().forEach(print);
   }
 
+  void verTareasPendientes() {
+    return this.getTareasPendientes().forEach(print);
+  }
+
   bool hayCompletas() {
     return tareas.any((tarea) => tarea.estadoActual);
+  }
+
+  bool hayPendientes() {
+    return tareas.any((tarea) => !tarea.estadoActual);
   }
 
   bool existeTareaConNombre(String nombreTarea) {
