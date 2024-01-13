@@ -20,9 +20,7 @@ class Tarea {
 
   @override
   String toString() {
-    String descripcionTexto = descripcion ?? "Sin descripción";
-
-    return "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(DateTime.now())} - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcionTexto";
+    return "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(DateTime.now())} - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcion";
   }
 
   //String toString() =>
