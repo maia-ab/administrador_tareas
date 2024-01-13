@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'clases/persona.dart';
 import 'clases/tarea.dart';
 
 void main(List<String> args) {
@@ -11,7 +12,10 @@ void main(List<String> args) {
     print('5. Eliminar tarea');
     print('6. Limpiar tareas');
     print('7. Tareas a realizar en fecha:');
-    print('8. Salir');
+    print('8. Agregar contacto');
+    print('9. Asignar tarea a un contacto');
+    print('10. Ver contactos');
+    print('13. Salir');
     stdout.write('Seleccione accion a realizar: ');
     int opcion = int.parse(stdin.readLineSync()!);
     switch (opcion) {
@@ -115,6 +119,48 @@ void main(List<String> args) {
         break;
 
       case 8:
+        stdout.write('Ingrese nombre de nuevo contacto: ');
+        String nombreContacto = stdin.readLineSync()!;
+
+        stdout.write('Ingrese DNI de nuevo contacto: ');
+        int dniContacto = int.parse(stdin.readLineSync()!);
+
+        Persona personaNueva = Persona(nombreContacto, dniContacto);
+
+        contactos.agregarIntegrante(personaNueva);
+
+        break;
+
+      case 9:
+        stdout.write('Ingrese nombre de contacto: ');
+        String nombreContacto = stdin.readLineSync()!;
+        Persona contacto = contactos.getIntegrantePorNombre(nombreContacto);
+
+        stdout.write('Ingrese tarea que quiere asignar: ');
+        String nombreTarea = stdin.readLineSync()!;
+        Tarea tarea = tareas.getTareaPorNombre(nombreTarea);
+
+        if (contactos.existeIntegranteConNombre(nombreContacto) &&
+            tareas.existeTareaConNombre(nombreTarea)) {
+          contacto.asignarTarea(tarea);
+        } else {
+          print(
+              "Los contactos y tareas deben estar creados antes de asignarse.");
+        }
+
+        break;
+
+      case 10:
+        if (!contactos.estaVacio()) {
+          contactos.verIntegrantes();
+        } else {
+          print("No hay contactos agregados.");
+        }
+        ;
+
+        break;
+
+      case 11:
         print('Adios!');
         continuar = false;
         break;
@@ -126,6 +172,8 @@ void main(List<String> args) {
 }
 
 ListadoDeTareas tareas = new ListadoDeTareas();
+GrupoDePersonas contactos = new GrupoDePersonas("Contactos");
+List<GrupoDePersonas> grupos = [];
 
 /*void agregarTarea(
     {required String nombre,

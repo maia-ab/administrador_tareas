@@ -2,9 +2,9 @@ import 'package:intl/intl.dart';
 
 class Tarea {
   String? nombre;
-  DateTime fechaEntrega;
-  late DateTime fechaCreacion;
-  late DateTime fechaFinalizacion;
+  final fechaEntrega;
+  late final DateTime fechaCreacion;
+  late final DateTime fechaFinalizacion;
   String? descripcion;
   bool _estaCompleta = false;
 
@@ -30,6 +30,10 @@ class ListadoDeTareas {
 
   List<Tarea> getTareas() {
     return tareas;
+  }
+
+  Tarea getTareaPorNombre(String nombreABuscar) {
+    return tareas.firstWhere((tarea) => tarea.nombre == nombreABuscar);
   }
 
   List<String?> getTareasPorNombre() {
@@ -68,6 +72,10 @@ class ListadoDeTareas {
 
   bool hayCompletas() {
     return tareas.any((tarea) => tarea.estadoActual);
+  }
+
+  bool existeTareaConNombre(String nombreTarea) {
+    return tareas.any((per) => per.nombre == tareas);
   }
 
   void vaciarListado() {
