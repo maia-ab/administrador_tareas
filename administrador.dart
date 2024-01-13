@@ -75,6 +75,7 @@ void main(List<String> args) {
 
           if (!tareaACompletar.estadoActual) {
             tareaACompletar.cambiarEstado();
+            tareaACompletar.fechaFinalizacion = DateTime.now();
           } else {
             print("Tarea ya fue completada.");
           }
