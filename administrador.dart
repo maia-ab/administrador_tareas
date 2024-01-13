@@ -40,6 +40,9 @@ void main(List<String> args) {
 
         stdout.write('Ingresar descripcion de la tarea (OPCIONAL):');
         String descripcion = stdin.readLineSync()!;
+        if (descripcion == "") {
+          descripcion = "Sin descripción";
+        }
 
         Tarea tareaCreada = new Tarea(
             nombre: nombre,
