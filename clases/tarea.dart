@@ -1,12 +1,14 @@
 import 'package:intl/intl.dart';
 
 class Tarea {
-  String? nombre;
-  DateTime fecha;
+  String nombre;
+  DateTime fechaEntrega;
+  DateTime fechaCreacion;
+  DateTime? fechaFinalizacion;
   String? descripcion;
   bool _estaCompleta = false;
 
-  Tarea(this.nombre, this.fecha, this.descripcion);
+  Tarea(this.nombre, this.fechaEntrega, this.fechaCreacion, this.descripcion);
 
   bool get estadoActual => _estaCompleta;
 
@@ -14,7 +16,7 @@ class Tarea {
 
   @override
   String toString() =>
-      "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(fecha)} - $descripcion";
+      "$nombre - Creada en fecha ${DateFormat('yyyy-MM-dd').format(fechaCreacion)}  - A completarse en fecha ${DateFormat('yyyy-MM-dd').format(fechaEntrega)} - $descripcion";
   // El DateFormat viene con el paquete de intl te permite formatear el DateTime como quieras en este caso lo use para que no muestre la hora.
 }
 
@@ -71,11 +73,13 @@ class ListadoDeTareas {
     return tareas.isEmpty;
   }
 
-  List<Tarea> getTareasPorFecha(DateTime fechaIngresada) {
-    return tareas.where((tarea) => tarea.fecha == fechaIngresada).toList();
+  List<Tarea> getTareasPorFechaDeEntrega(DateTime fechaIngresada) {
+    return tareas
+        .where((tarea) => tarea.fechaEntrega == fechaIngresada)
+        .toList();
   }
 
-  void verTareasPorFecha(DateTime fechaIngresada) {
-    return this.getTareasPorFecha(fechaIngresada).forEach(print);
+  void verTareasPorFechaDeEntrega(DateTime fechaIngresada) {
+    return this.getTareasPorFechaDeEntrega(fechaIngresada).forEach(print);
   }
 }

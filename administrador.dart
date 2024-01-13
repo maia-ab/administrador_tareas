@@ -38,7 +38,8 @@ void main(List<String> args) {
         stdout.write('Ingresar descripcion de la tarea (OPCIONAL):');
         String descripcion = stdin.readLineSync()!;
 
-        Tarea tareaCreada = new Tarea(nombre, fechaAAsignar, descripcion);
+        Tarea tareaCreada =
+            new Tarea(nombre, fechaAAsignar, DateTime.now(), descripcion);
         tareas.addTarea(tareaCreada);
         break;
 
@@ -101,7 +102,7 @@ void main(List<String> args) {
         stdout.write('Ingrese fecha: ');
         String fechaIngresada = stdin.readLineSync()!;
         DateTime fechaAFiltrar = DateTime.parse(fechaIngresada);
-        tareas.verTareasPorFecha(fechaAFiltrar);
+        tareas.verTareasPorFechaDeEntrega(fechaAFiltrar);
         break;
 
       case 8:
